@@ -1,0 +1,18 @@
+{
+  // Делает вывод print()/stdout/stderr видимым в VS Code Testing (Pytest),
+  // даже для успешно прошедших тестов.
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": [
+    "tests",
+    // дублировать вывод в Test Output
+    "--capture=tee-sys",
+    // показывать причины skip/xfail и т.п.
+    "-rA"
+  ],
+  // Автоматически открывать окно результатов тестов после запуска из Testing.
+  // Значения обычно: "always" | "failure" | "never".
+  "testing.automaticallyOpenPeekView": "always",
+  "editor.formatOnSave": true,
+  "python-envs.pythonProjects": []
+}

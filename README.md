@@ -1,2 +1,3 @@
-# demo-open-spec-with-cursor
-Демонстрация генерации кода при помощи OpenSpec через Cursor Pro
+# Demo OpenSpec with Cursor
+
+Демонстрация генерации кода при помощи [OpenSpec](https://github.com/Fission-AI/OpenSpec) через Cursor Pro
