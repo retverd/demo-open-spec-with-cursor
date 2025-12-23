@@ -16,3 +16,9 @@
 - Python: 3.14.2
 
 ## Журнал наблюдений
+
+### Инициализация проекта
+
+#### Commit [TBD](https://github.com/retverd/demo-open-spec-with-cursor/commit/TBD)
+
+Инициализировал проект через openspec init, все прошло без конфликтов или ошибок.
