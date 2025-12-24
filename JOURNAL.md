@@ -62,7 +62,7 @@ openspec init
 
 ### Создание первого изменения
 
-#### Commit [TBD](https://github.com/retverd/demo-open-spec-with-cursor/commit/TBD)
+#### Commit [f845b20113f57ad89d8ef5b8a2fb59e0361f3de3](https://github.com/retverd/demo-open-spec-with-cursor/commit/f845b20113f57ad89d8ef5b8a2fb59e0361f3de3)
 
 Начало работы над первым изменением:
 
@@ -103,3 +103,50 @@ openspec init
 - почти во всех файлах отсутствует заголовок первого уровня, что нарушает спецификацию md;
 - структура датасета пока не определена, хотя, казалось бы, на этом этапе уже стоило бы определить;
 - на этап design вынесены вопросы, хотя их логично было бы задать в начале.
+
+#### Commit [TBD](https://github.com/retverd/demo-open-spec-with-cursor/commit/TBD)
+
+Необходимо проверить все документы на готовность. Попробую через агента:
+
+```prompt
+[Model GPT-5.2] Проверь наличие открытых вопросов в спецификации @openspec/changes/add-cbr-usdrub-parquet-export. Если есть, давай ответим на них вместе.
+```
+
+После ответа на вопросы все документы обновлены, вопросов больше нет:
+
+> Открытые вопросы в change `add-cbr-usdrub-parquet-export`
+>
+> - Были открыты (в [proposal.md](openspec/changes/add-cbr-usdrub-parquet-export/proposal.md) и [design.md](openspec/changes/add-cbr-usdrub-parquet-export/design.md)):
+>   - Что делать, если за текущий день нет опубликованного курса;
+>   - Путь выходной папки (фиксированный/настраиваемый)$;
+>   - Имя файла и поведение при повторном запуске.
+> - Теперь закрыты и зафиксированы в спеках/доках:
+>   - Если за today нет значения: считаем результат частично успешным и сохраняем доступные значения.
+>   - Папка сохранения: текущая папка (cwd).
+>   - Имя файла: cbr_usdrub_YYYY-MM-DD_HHMMSS.parquet, где YYYY-MM-DD = локальный today, HHMMSS = локальное время запуска.
+> - Что я обновил
+>   - openspec/changes/add-cbr-usdrub-parquet-export/specs/cbr-usdrub/spec.md: обновил сценарии про папку и имя файла.
+>   - openspec/changes/add-cbr-usdrub-parquet-export/proposal.md: перенёс “Open Questions” в “Решено”.
+>   - openspec/changes/add-cbr-usdrub-parquet-export/design.md: добавил решения и убрал список открытых вопросов.
+>   - openspec/changes/add-cbr-usdrub-parquet-export/tasks.md: заменил “уточнить” на “зафиксировать в спеках” по этим пунктам.
+> - Проверка
+>   - openspec validate add-cbr-usdrub-parquet-export --strict — валидно.
+
+Также разбираюсь с рисками:
+
+```prompt
+[Model GPT-5.2] какие есть риски и предложения по их митигации?
+...
+[Model GPT-5.2] добавь в спецификацию и задачи те митигации, которых там ещё нет
+```
+
+✅ Плюсы:
+
+- найдены все открытые вопросы и разобраны риски, документация обновлена;
+- частично покрыты негативные сценарии, можно дописать свои.
+
+❌ Минусы:
+
+- все приходится делать вручную, нехватает команд;
+- часть команд приходится запускать не из агента типа `/openspec-...`, а через консоль, например, `openspec list`, `openspec validate ...`, `openspec show ...`. Рассматриваю добавление своих команд в инициализированный проект.
+- в [proposal.md](openspec/changes/add-cbr-usdrub-parquet-export/proposal.md) ответы записаны в раздел **Open Questions**, а не **What Changes**.
