@@ -63,7 +63,7 @@ def test_build_output_filename_contains_date_and_time():
 
 
 class DummyClient:
-    def __init__(self, responses: List[Optional[float]]):
+    def __init__(self, responses: List[Optional[float] | Exception]):
         self.responses = responses
         self.calls = 0
 
@@ -76,7 +76,11 @@ class DummyClient:
 
             def raise_for_status(self):
                 if 400 <= self.status_code < 600:
-                    raise httpx.HTTPStatusError("error", request=None, response=self)
+                    raise httpx.HTTPStatusError(
+                        "error",
+                        request=httpx.Request("GET", "http://example.com"),
+                        response=self,  # type: ignore[arg-type]
+                    )
 
             def json(self):
                 return self._payload
